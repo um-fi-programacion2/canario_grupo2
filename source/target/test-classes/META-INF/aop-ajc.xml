@@ -1,0 +1,13 @@
+<aspectj>
+<aspects>
+<aspect name="com.um.canario.models.TweetIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="com.um.canario.models.TweeterIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="com.um.canario.models.TweetIntegrationTest_Roo_Configurable"/>
+<aspect name="com.um.canario.models.TweeterIntegrationTest_Roo_Configurable"/>
+<aspect name="com.um.canario.models.TweeterDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="com.um.canario.models.TweetDataOnDemand_Roo_Configurable"/>
+<aspect name="com.um.canario.models.TweeterDataOnDemand_Roo_Configurable"/>
+<aspect name="com.um.canario.models.TweetDataOnDemand_Roo_DataOnDemand"/>
+</aspects>
+</aspectj>
+

@@ -1,0 +1,13 @@
+<aspectj>
+<aspects>
+<aspect name="com.um.canario.models.Tweeter_Roo_Jpa_Entity"/>
+<aspect name="com.um.canario.models.Tweet_Roo_Jpa_Entity"/>
+<aspect name="com.um.canario.models.Tweeter_Roo_Jpa_ActiveRecord"/>
+<aspect name="com.um.canario.models.Tweeter_Roo_Configurable"/>
+<aspect name="com.um.canario.models.Tweeter_Roo_ToString"/>
+<aspect name="com.um.canario.models.Tweet_Roo_Configurable"/>
+<aspect name="com.um.canario.models.Tweet_Roo_ToString"/>
+<aspect name="com.um.canario.models.Tweet_Roo_Jpa_ActiveRecord"/>
+</aspects>
+</aspectj>
+

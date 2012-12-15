@@ -1,0 +1,42 @@
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-14 18:39:58
+hint
+project --topLevelPackage com.um.canario
+hint
+jpa setup --database MYSQL --provider HIBERNATE --password FALLout10 --databaseName canario --userName root
+hint
+entity jpa --class ~.models.Tweeter
+field string --fieldName content
+field date --fieldName moment --type java.util.Date
+field string --fieldName location
+entity jpa --class ~.models.Tweeter
+field string --fieldName username
+field string --fieldName name
+field string --fieldName lname
+field string --fieldName pass
+field string --fieldName photo
+field date --fieldName birth_date --type java.util.Date
+entity jpa --class ~.models.Tweet
+field string --fieldName content
+field string --fieldName location
+field date --fieldName moment --type java.util.Date
+field reference --fieldName tweeter --type ~.models.Tweeter
+hint
+hint web mvc
+web mvc setup
+web mvc controller --class ~.controllers.SiteController
+web mvc controller --class ~.controllers.TweetController
+entity jpa --class ~.models.Tweet --testAutomatically 
+entity jpa --class ~.models.Tweeter --testAutomatically 
+web mvc controller --class ~.controllers.TweetController
+security setup
+hint security
+hint
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-14 19:45:28
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-15 13:33:52
+field boolean --fieldName location --class ~.models.Tweeter
+field string --fieldName username
+field string --fieldName name
+field string --fieldName lname
+field string --fieldName photo_url
+field date --fieldName birth_date --type java.util.Date
