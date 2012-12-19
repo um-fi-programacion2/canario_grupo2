@@ -1,3 +1,5 @@
+@grey: #CCC;
+
 #index-content {
 	.btn {
 		margin-bottom: 15px;
@@ -5,5 +7,11 @@
 }
 
 #tweeter-view-content {
-	
+	.tweet {
+		padding-right: 10%;
+		&:first-child {
+			border-top: 1px solid @grey;
+		}
+		border-bottom: 1px solid @grey;
+	}
 }

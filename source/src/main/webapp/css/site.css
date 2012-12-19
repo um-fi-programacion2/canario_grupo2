@@ -1,3 +1,10 @@
 #index-content .btn {
   margin-bottom: 15px;
 }
+#tweeter-view-content .tweet {
+  padding-right: 10%;
+  border-bottom: 1px solid #cccccc;
+}
+#tweeter-view-content .tweet:first-child {
+  border-top: 1px solid #cccccc;
+}

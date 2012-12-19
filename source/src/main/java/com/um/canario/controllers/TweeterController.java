@@ -1,8 +1,11 @@
 package com.um.canario.controllers;
 
+import java.lang.System;
 import java.util.List;
+import com.um.canario.exceptions.ThisIsNotTheUserYouAreLookingForException;
 import com.um.canario.models.Tweet;
 import com.um.canario.models.Tweeter;
+import com.um.canario.models.Following;
 import com.um.canario.validators.TweeterValidator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,10 +19,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @RequestMapping("/tweeter/**")
 @Controller
 public class TweeterController {
+
+    @RequestMapping(params={"view","follow=1"}, produces="text/html", method=RequestMethod.POST)
+    public String follow(Model uiModel, HttpServletRequest request) {
+
+        Following following = new Following();
+        Tweeter followed = Tweeter.findTweeter(new Long(request.getParameter("view")));
+        Tweeter follower;
+        try {
+            follower = getTweeter();
+        } catch (ThisIsNotTheUserYouAreLookingForException e) {
+            return "redirect:tweet/index";
+        }
+
+        following.setFollower(follower);
+        following.setFollowed(followed);
+        following.persist();
+        uiModel.addAttribute("tweeter", followed);
+        return "tweeter/view";
+    }
 
     @RequestMapping(params="view", produces="text/html")
     public String view(Model uiModel, HttpServletRequest request) {
@@ -54,5 +77,14 @@ public class TweeterController {
     public String newTweeter(Model uiModel){
     	uiModel.addAttribute("tweeter", new Tweeter());
     	return "tweeter/new";
+    }
+
+    private Tweeter getTweeter() throws ThisIsNotTheUserYouAreLookingForException {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Tweeter tweeter = Tweeter.findTweeterByUsername(username);
+        if(tweeter == null) {
+            throw new ThisIsNotTheUserYouAreLookingForException();
+        }
+        return tweeter;
     }
 }

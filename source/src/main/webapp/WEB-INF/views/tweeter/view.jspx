@@ -27,20 +27,28 @@
           ${tweeter.getBirthDate()}    
         </dd>
       </dl>
+      <form method='POST'>
+        <input type="hidden" name="follow" value="1" />
+        <button class='btn btn-info' type="submit">
+          Seguir
+        </button>
+      </form>
     </div>
     <div class="span6">
+      <h3>Tweets</h3>
       <c:forEach var="tweet" items="${tweeter.getTweets()}">
         <div class="tweet">
-          <div class="body">
-            ${tweet.getContent()}
-          </div>
-          <div class="pull-right">
-            ${tweet.getDate()}
+          <h4>${tweeter.getName()} ${tweeter.getLname()} <small>@${tweeter.getUsername()}</small></h4>
+          <div class="row-fluid">
+            <div class="body span8">
+              ${tweet.getContent()}
+            </div>
+            <div class="span4">
+              ${tweet.getDate()}
+            </div>
           </div>
         </div>
-        <br />
       </c:forEach>
-
     </div>
   </div>
 
