@@ -20,3 +20,6 @@
 #tweet-index-content #tweets .tweet .re form {
   margin-bottom: 5px;
 }
+#tweet-index-content #tweets .tweet .re .retweeted-by {
+  color: #cccccc;
+}

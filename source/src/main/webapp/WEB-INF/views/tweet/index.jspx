@@ -50,6 +50,23 @@
                     ${tweet.getDate()}
                   </div>
                 </div>
+                <div class="re row-fluid">
+                  <div class="span8">
+                    <small class='retweeted-by'>
+                      ReTweeteado por 
+                      <a href="/tweeter?view=${tweet.getTweeter().getId()}">
+                        @${tweet.getTweeter().getUsername()}
+                      </a>
+                    </small>
+                  </div>
+                  <form method="POST" class='span1 offset3'>
+                    <input type="hidden" name="retweet" value="1" />
+                    <input type="hidden" name="tweet" value="${tweet.getReTweet().getId()}" />
+                    <button title='ReTweetear'>
+                      <i class="icon-retweet"><!-- --></i>
+                    </button>
+                  </form>
+                </div>
               </div>
             </c:otherwise>
           </c:choose>
