@@ -21,5 +21,19 @@
   margin-bottom: 5px;
 }
 #tweet-index-content #tweets .tweet .re .retweeted-by {
-  color: #cccccc;
+  color: #999999;
+}
+#tweet-new-content form textarea {
+  width: 97%;
+  height: 100px;
+}
+#tweet-new-content #word-count-wrapper {
+  margin: 5px 0;
+}
+@media (min-width: 980px) {
+  #tweet-new-content form {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

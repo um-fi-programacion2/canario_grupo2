@@ -80,3 +80,11 @@ field reference --fieldName tweeter --type ~.models.Tweeter --class ~.models.Twe
 // [failed] field reference --fieldName reTweet --type ~.models.Tweet --class ~.models.Tweet --fetch EAGER 
 field reference --fieldName reTweet --type ~.models.Tweet --class ~.models.Tweet --fetch EAGER 
 // [failed] field reference --fieldName reTweet --type ~.models.Tweet --class ~.models.Tweet --fetch EAGER 
+entity jpa --class Hash --testAutomatically 
+field string --fieldName name --notNull --unique 
+entity jpa --class HashMention --testAutomatically 
+field reference --fieldName hash --type ~.models.Hash --notNull 
+field reference --fieldName tweet --type ~.models.Tweet --notNull 
+field set --fieldName tweets --type ~.models.HashMention --mappedBy hash --cardinality ONE_TO_MANY 
+field set --fieldName tweets --type ~.models.HashMention --mappedBy hash --cardinality ONE_TO_MANY --class ~.models.Hash
+field set --fieldName hashes --type ~.models.HashMention --mappedBy hash --cardinality ONE_TO_MANY --class ~.models.Tweet

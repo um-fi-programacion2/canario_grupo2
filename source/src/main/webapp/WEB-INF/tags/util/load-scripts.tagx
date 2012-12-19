@@ -6,20 +6,24 @@
   <spring:url value="/resources/bootstrap/css/bootstrap-responsive.min.css" var="bootstrap_responsive_css" />
   <spring:url value="/resources/bootstrap/css/bootstrap-responsive.min.css" var="bootstrap_responsive_css" />
   <spring:url value="/resources/css/bootstrap-datepicker.css" var="datepicker_css" />
+  <spring:url value="/resources/css/jquery.autocomplete.css" var="autocomplete_css" />
   <spring:url value="/resources/css/site.css" var="style_css" />
 
   <spring:url value="/resources/js/jquery-1.8.3.min.js" var="jquery_js" />
   <spring:url value="/resources/bootstrap/js/bootstrap.min.js" var="bootstrap_js" />
   <spring:url value="/resources/js/bootstrap-datepicker.js" var="datepicker_js" />
+  <spring:url value="/resources/js/jquery.autocomplete.min.js" var="autocomplete_js" />
   
   <link rel="stylesheet" type="text/css" href="${bootstrap_css}" />
   <link rel="stylesheet" type="text/css" href="${bootstrap_responsive_css}" />
   <link rel="stylesheet" type="text/css" href="${datepicker_css}" />
+  <link rel="stylesheet" type="text/css" href="${autocomplete_css}" />
   <link rel="stylesheet" type="text/css" href="${style_css}" />
 
   <script src="${jquery_js}" type="text/javascript"><!-- required for FF3 and Opera --></script>
   <script src="${bootstrap_js}" type="text/javascript"><!-- required for FF3 and Opera --></script>
   <script src="${datepicker_js}" type="text/javascript"><!-- required for FF3 and Opera --></script>
+  <script src="${autocomplete_js}" type="text/javascript"><!-- required for FF3 and Opera --></script>
 
 
 </jsp:root>

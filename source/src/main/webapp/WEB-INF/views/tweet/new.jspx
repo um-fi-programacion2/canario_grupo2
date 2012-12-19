@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields">
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" id="tweet-new-content">
   <jsp:directive.page contentType="text/html;charset=UTF-8"/>
   <jsp:output omit-xml-declaration="yes"/>
-	<form:create id='new-tweeter' modelAttribute='tweet' path='/tweet/new' label='new-tweet' btnText="Twitear" z="BjDZLIpn3t7wfNMoyMxqaVdhBcw=">
+	<form:create id='new-tweet' modelAttribute='tweet' path='/tweet/new' label='new-tweet' btnText="Twitear" z="BjDZLIpn3t7wfNMoyMxqaVdhBcw=">
 	    <legend>Nuevo Tweet</legend>
-	    <field:textarea id="content" field="content" label="Tweet" />
+	    <div id="word-count-wrapper">
+	    	Caracteres disponibles: <b id="word-count">200</b>
+	    </div>
+	    <field:textarea id="content" field="content" label="Tweet" renderLabel="false" />
 	</form:create>
+	<script type="text/javascript">
+		$('#_content_id').on("keyup", function(){
+			var count = $('#_content_id').val().length;
+			$("#word-count").html(200 - count);
+		});
+	</script>
 </div>

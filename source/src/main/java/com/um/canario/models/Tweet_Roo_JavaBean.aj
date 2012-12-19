@@ -3,10 +3,12 @@
 
 package com.um.canario.models;
 
+import com.um.canario.models.HashMention;
 import com.um.canario.models.Location;
 import com.um.canario.models.Tweet;
 import com.um.canario.models.Tweeter;
 import java.util.Date;
+import java.util.Set;
 
 privileged aspect Tweet_Roo_JavaBean {
     
@@ -48,6 +50,14 @@ privileged aspect Tweet_Roo_JavaBean {
     
     public void Tweet.setReTweet(Tweet reTweet) {
         this.reTweet = reTweet;
+    }
+    
+    public Set<HashMention> Tweet.getHashes() {
+        return this.hashes;
+    }
+    
+    public void Tweet.setHashes(Set<HashMention> hashes) {
+        this.hashes = hashes;
     }
     
 }

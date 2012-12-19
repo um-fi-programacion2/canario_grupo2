@@ -1,10 +1,14 @@
 package com.um.canario.models;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Query;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,6 +39,9 @@ public class Tweet {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private com.um.canario.models.Tweet reTweet;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tweet")
+    private Set<HashMention> hashes = new HashSet<HashMention>();
 
     public static List<com.um.canario.models.Tweet> findTweetsFromTweeters(List<com.um.canario.models.Tweeter> tweeters) {
         List<Tweet> tweets;

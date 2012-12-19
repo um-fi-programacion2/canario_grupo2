@@ -37,6 +37,7 @@ privileged aspect TweetDataOnDemand_Roo_DataOnDemand {
         setContent(obj, index);
         setDate(obj, index);
         setLocation(obj, index);
+        setReTweet(obj, index);
         setTweeter(obj, index);
         return obj;
     }
@@ -54,6 +55,11 @@ privileged aspect TweetDataOnDemand_Roo_DataOnDemand {
     public void TweetDataOnDemand.setLocation(Tweet obj, int index) {
         Location location = null;
         obj.setLocation(location);
+    }
+    
+    public void TweetDataOnDemand.setReTweet(Tweet obj, int index) {
+        Tweet reTweet = obj;
+        obj.setReTweet(reTweet);
     }
     
     public void TweetDataOnDemand.setTweeter(Tweet obj, int index) {
