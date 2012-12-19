@@ -3,15 +3,22 @@
 
 package com.um.canario.models;
 
+import com.um.canario.models.Location;
 import com.um.canario.models.Tweet;
 import com.um.canario.models.TweetDataOnDemand;
+import com.um.canario.models.Tweeter;
+import com.um.canario.models.TweeterDataOnDemand;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect TweetDataOnDemand_Roo_DataOnDemand {
@@ -22,9 +29,36 @@ privileged aspect TweetDataOnDemand_Roo_DataOnDemand {
     
     private List<Tweet> TweetDataOnDemand.data;
     
+    @Autowired
+    private TweeterDataOnDemand TweetDataOnDemand.tweeterDataOnDemand;
+    
     public Tweet TweetDataOnDemand.getNewTransientTweet(int index) {
         Tweet obj = new Tweet();
+        setContent(obj, index);
+        setDate(obj, index);
+        setLocation(obj, index);
+        setTweeter(obj, index);
         return obj;
+    }
+    
+    public void TweetDataOnDemand.setContent(Tweet obj, int index) {
+        String content = "content_" + index;
+        obj.setContent(content);
+    }
+    
+    public void TweetDataOnDemand.setDate(Tweet obj, int index) {
+        Date date = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
+        obj.setDate(date);
+    }
+    
+    public void TweetDataOnDemand.setLocation(Tweet obj, int index) {
+        Location location = null;
+        obj.setLocation(location);
+    }
+    
+    public void TweetDataOnDemand.setTweeter(Tweet obj, int index) {
+        Tweeter tweeter = tweeterDataOnDemand.getRandomTweeter();
+        obj.setTweeter(tweeter);
     }
     
     public Tweet TweetDataOnDemand.getSpecificTweet(int index) {

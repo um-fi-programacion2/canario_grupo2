@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <jsp:output omit-xml-declaration="yes"/>
+  <form:create id='new-tweeter' modelAttribute='tweeter' path='/tweeter/new' label='new-tweeter' btnText="Crear" z="BjDZLIpn3t7wfNMoyMxqaVdhBcw=">
+      <legend>Crear Usuario</legend>
+      <field:input field='username' id='username' label='Nombre de Usuario'/>
+      <field:input field='email' id='email' label='E-Mail' />
+      <field:input field='name' id='name' label='Nombre' />
+      <field:input field="lname" id="lname" label="Apellido" />
+      <field:input field="password" id="password" label="Contraseña" type="password" />
+      <field:input field="rePassword" id="re-password" label="Repetir Contraseña" type="password" disableFormBinding="true"/>
+      <field:datetime field="birthDate" id="birthDate" label="Fecha de Nacimiento" />
+  </form:create>
+</div>
+

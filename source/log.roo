@@ -1,42 +1,77 @@
-// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-14 18:39:58
-hint
 project --topLevelPackage com.um.canario
-hint
-jpa setup --database MYSQL --provider HIBERNATE --password FALLout10 --databaseName canario --userName root
-hint
-entity jpa --class ~.models.Tweeter
-field string --fieldName content
-field date --fieldName moment --type java.util.Date
-field string --fieldName location
-entity jpa --class ~.models.Tweeter
-field string --fieldName username
-field string --fieldName name
-field string --fieldName lname
-field string --fieldName pass
-field string --fieldName photo
-field date --fieldName birth_date --type java.util.Date
-entity jpa --class ~.models.Tweet
-field string --fieldName content
-field string --fieldName location
-field date --fieldName moment --type java.util.Date
-field reference --fieldName tweeter --type ~.models.Tweeter
-hint
-hint web mvc
+jpa setup --provider HIBERNATE --database MYSQL --databaseName canario --userName root --password FALLout10
+entity jpa --class ~.models.Tweet --testAutomatically
+entity jpa --class com.um.canario.models.Tweeter --testAutomatically
+field string --fieldName username --notNull --unique 
+field string --fieldName email --notNull --unique 
+field string --fieldName name --notNull 
+field string --fieldName lname --notNull 
+field string --fieldName photoUrl --column photo_url
+field boolean --fieldName allowGeolocation --column allow_geolocation --notNull 
+field string --fieldName password --notNull --permitReservedWords 
+field date --fieldName birthDate --type java.util.Date --notNull --column birth_date
+field boolean --fieldName enabled --notNull
+field string --fieldName authority --notNull
+field set --fieldName tweets --type ~.models.Tweet
+field string --fieldName content --class ~.models.Tweet
+field string --fieldName content --class ~.models.Tweet --sizeMax 400 
+field date --fieldName date --type java.util.Date --permitReservedWords --notNull
+entity jpa --class ~.models.Location
+field reference --fieldName location --type ~.models.Location --class ~.models.Tweet
+entity jpa --class ~.models.Country --testAutomatically 
+entity jpa --class ~.models.City --testAutomatically 
+field reference --fieldName country --type ~.models.Country --notNull
+field reference --fieldName city --type ~.models.City --notNull --class ~.models.Location
+field string --fieldName name --notNull 
+field string --fieldName name --notNull --class ~.models.City
+field string --fieldName name --notNull --class ~.models.Country
+entity jpa --class ~.models.Following --testAutomatically 
+field reference --fieldName follower --type ~.models.Tweeter --notNull
+field reference --fieldName followed --type ~.models.Tweeter --notNull
+field set --fieldName followed --type ~.models.Following --cardinality ONE_TO_MANY --mappedBy followed --class ~.models.Tweeter
+field set --fieldName following --type ~.models.Following --cardinality ONE_TO_MANY --mappedBy follower --class ~.models.Tweeter
 web mvc setup
 web mvc controller --class ~.controllers.SiteController
-web mvc controller --class ~.controllers.TweetController
-entity jpa --class ~.models.Tweet --testAutomatically 
-entity jpa --class ~.models.Tweeter --testAutomatically 
-web mvc controller --class ~.controllers.TweetController
 security setup
-hint security
-hint
-exit
-// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-14 19:45:28
-// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-15 13:33:52
-field boolean --fieldName location --class ~.models.Tweeter
-field string --fieldName username
-field string --fieldName name
-field string --fieldName lname
-field string --fieldName photo_url
-field date --fieldName birth_date --type java.util.Date
+web mvc controller --class ~.controllers.TweeterController
+web mvc controller --class ~.controllers.TweetController
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-18 19:40:22
+project --topLevelPackage com.um.canario
+jpa setup --provider HIBERNATE --database MYSQL --databaseName canario --userName root --password FALLout10
+entity jpa --class ~.models.Tweet --testAutomatically
+entity jpa --class com.um.canario.models.Tweeter --testAutomatically
+field string --fieldName username --notNull --unique 
+field string --fieldName email --notNull --unique 
+field string --fieldName name --notNull 
+field string --fieldName lname --notNull 
+field string --fieldName photoUrl --column photo_url
+field boolean --fieldName allowGeolocation --column allow_geolocation --notNull 
+field string --fieldName password --notNull --permitReservedWords 
+field date --fieldName birthDate --type java.util.Date --notNull --column birth_date
+field boolean --fieldName enabled --notNull
+field string --fieldName authority --notNull
+field set --fieldName tweets --type ~.models.Tweet
+field string --fieldName content --class ~.models.Tweet
+// [failed] field string --fieldName content --class ~.models.Tweet --sizeMax 400 
+field date --fieldName date --type java.util.Date --permitReservedWords --notNull
+entity jpa --class ~.models.Location
+field reference --fieldName location --type ~.models.Location --class ~.models.Tweet
+entity jpa --class ~.models.Country --testAutomatically 
+entity jpa --class ~.models.City --testAutomatically 
+field reference --fieldName country --type ~.models.Country --notNull
+field reference --fieldName city --type ~.models.City --notNull --class ~.models.Location
+field string --fieldName name --notNull 
+field string --fieldName name --notNull --class ~.models.City
+field string --fieldName name --notNull --class ~.models.Country
+entity jpa --class ~.models.Following --testAutomatically 
+field reference --fieldName follower --type ~.models.Tweeter --notNull
+field reference --fieldName followed --type ~.models.Tweeter --notNull
+field set --fieldName followed --type ~.models.Following --cardinality ONE_TO_MANY --mappedBy followed --class ~.models.Tweeter
+field set --fieldName following --type ~.models.Following --cardinality ONE_TO_MANY --mappedBy follower --class ~.models.Tweeter
+web mvc setup
+web mvc controller --class ~.controllers.SiteController
+security setup
+web mvc controller --class ~.controllers.TweeterController
+web mvc controller --class ~.controllers.TweetController
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-18 21:07:00
+field reference --fieldName tweeter --type ~.models.Tweeter --class ~.models.Tweet --notNull

@@ -20,4 +20,9 @@ public class SiteController {
     public String index() {
         return "site/index";
     }
+
+    @RequestMapping(value="/login", produces="text/html")
+    public String login() {
+    	return "login";
+    }
 }

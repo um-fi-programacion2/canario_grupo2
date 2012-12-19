@@ -27,18 +27,42 @@ privileged aspect TweeterDataOnDemand_Roo_DataOnDemand {
     
     public Tweeter TweeterDataOnDemand.getNewTransientTweeter(int index) {
         Tweeter obj = new Tweeter();
-        setBirth_date(obj, index);
+        setAllowGeolocation(obj, index);
+        setAuthority(obj, index);
+        setBirthDate(obj, index);
+        setEmail(obj, index);
+        setEnabled(obj, index);
         setLname(obj, index);
-        setLocation(obj, index);
         setName(obj, index);
-        setPhoto_url(obj, index);
+        setPassword(obj, index);
+        setPhotoUrl(obj, index);
         setUsername(obj, index);
         return obj;
     }
     
-    public void TweeterDataOnDemand.setBirth_date(Tweeter obj, int index) {
-        Date birth_date = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
-        obj.setBirth_date(birth_date);
+    public void TweeterDataOnDemand.setAllowGeolocation(Tweeter obj, int index) {
+        Boolean allowGeolocation = Boolean.TRUE;
+        obj.setAllowGeolocation(allowGeolocation);
+    }
+    
+    public void TweeterDataOnDemand.setAuthority(Tweeter obj, int index) {
+        String authority = "authority_" + index;
+        obj.setAuthority(authority);
+    }
+    
+    public void TweeterDataOnDemand.setBirthDate(Tweeter obj, int index) {
+        Date birthDate = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
+        obj.setBirthDate(birthDate);
+    }
+    
+    public void TweeterDataOnDemand.setEmail(Tweeter obj, int index) {
+        String email = "foo" + index + "@bar.com";
+        obj.setEmail(email);
+    }
+    
+    public void TweeterDataOnDemand.setEnabled(Tweeter obj, int index) {
+        Boolean enabled = Boolean.TRUE;
+        obj.setEnabled(enabled);
     }
     
     public void TweeterDataOnDemand.setLname(Tweeter obj, int index) {
@@ -46,19 +70,19 @@ privileged aspect TweeterDataOnDemand_Roo_DataOnDemand {
         obj.setLname(lname);
     }
     
-    public void TweeterDataOnDemand.setLocation(Tweeter obj, int index) {
-        Boolean location = Boolean.TRUE;
-        obj.setLocation(location);
-    }
-    
     public void TweeterDataOnDemand.setName(Tweeter obj, int index) {
         String name = "name_" + index;
         obj.setName(name);
     }
     
-    public void TweeterDataOnDemand.setPhoto_url(Tweeter obj, int index) {
-        String photo_url = "photo_url_" + index;
-        obj.setPhoto_url(photo_url);
+    public void TweeterDataOnDemand.setPassword(Tweeter obj, int index) {
+        String password = "password_" + index;
+        obj.setPassword(password);
+    }
+    
+    public void TweeterDataOnDemand.setPhotoUrl(Tweeter obj, int index) {
+        String photoUrl = "photoUrl_" + index;
+        obj.setPhotoUrl(photoUrl);
     }
     
     public void TweeterDataOnDemand.setUsername(Tweeter obj, int index) {

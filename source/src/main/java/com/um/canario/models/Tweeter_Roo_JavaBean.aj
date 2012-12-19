@@ -3,18 +3,13 @@
 
 package com.um.canario.models;
 
+import com.um.canario.models.Following;
+import com.um.canario.models.Tweet;
 import com.um.canario.models.Tweeter;
 import java.util.Date;
+import java.util.Set;
 
 privileged aspect Tweeter_Roo_JavaBean {
-    
-    public Boolean Tweeter.getLocation() {
-        return this.location;
-    }
-    
-    public void Tweeter.setLocation(Boolean location) {
-        this.location = location;
-    }
     
     public String Tweeter.getUsername() {
         return this.username;
@@ -22,6 +17,14 @@ privileged aspect Tweeter_Roo_JavaBean {
     
     public void Tweeter.setUsername(String username) {
         this.username = username;
+    }
+    
+    public String Tweeter.getEmail() {
+        return this.email;
+    }
+    
+    public void Tweeter.setEmail(String email) {
+        this.email = email;
     }
     
     public String Tweeter.getName() {
@@ -40,20 +43,76 @@ privileged aspect Tweeter_Roo_JavaBean {
         this.lname = lname;
     }
     
-    public String Tweeter.getPhoto_url() {
-        return this.photo_url;
+    public String Tweeter.getPhotoUrl() {
+        return this.photoUrl;
     }
     
-    public void Tweeter.setPhoto_url(String photo_url) {
-        this.photo_url = photo_url;
+    public void Tweeter.setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
     
-    public Date Tweeter.getBirth_date() {
-        return this.birth_date;
+    public Boolean Tweeter.getAllowGeolocation() {
+        return this.allowGeolocation;
     }
     
-    public void Tweeter.setBirth_date(Date birth_date) {
-        this.birth_date = birth_date;
+    public void Tweeter.setAllowGeolocation(Boolean allowGeolocation) {
+        this.allowGeolocation = allowGeolocation;
+    }
+    
+    public String Tweeter.getPassword() {
+        return this.password;
+    }
+    
+    public void Tweeter.setPassword(String password) {
+        this.password = password;
+    }
+    
+    public Date Tweeter.getBirthDate() {
+        return this.birthDate;
+    }
+    
+    public void Tweeter.setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+    
+    public Boolean Tweeter.getEnabled() {
+        return this.enabled;
+    }
+    
+    public void Tweeter.setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+    
+    public String Tweeter.getAuthority() {
+        return this.authority;
+    }
+    
+    public void Tweeter.setAuthority(String authority) {
+        this.authority = authority;
+    }
+    
+    public Set<Tweet> Tweeter.getTweets() {
+        return this.tweets;
+    }
+    
+    public void Tweeter.setTweets(Set<Tweet> tweets) {
+        this.tweets = tweets;
+    }
+    
+    public Set<Following> Tweeter.getFollowed() {
+        return this.followed;
+    }
+    
+    public void Tweeter.setFollowed(Set<Following> followed) {
+        this.followed = followed;
+    }
+    
+    public Set<Following> Tweeter.getFollowing() {
+        return this.following;
+    }
+    
+    public void Tweeter.setFollowing(Set<Following> following) {
+        this.following = following;
     }
     
 }

@@ -23,11 +23,8 @@
     <c:set var="sec_title">
       <spring:escapeBody javaScriptEscape="true" >${title}</spring:escapeBody>
     </c:set>
-      <script type="text/javascript">
-        $(document);
-      </script>       
-      <div>
-        <jsp:doBody />
-      </div>
+    <div>
+      <jsp:doBody />
+    </div>
   </c:if>
 </jsp:root>
