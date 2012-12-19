@@ -30,7 +30,7 @@
       <form method='POST'>
         <input type="hidden" name="follow" value="1" />
         <button class='btn btn-info' type="submit">
-          Seguir
+          ${following ? "Dejar de Seguir" : "Seguir"}
         </button>
       </form>
     </div>

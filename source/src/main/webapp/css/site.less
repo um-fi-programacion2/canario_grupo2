@@ -1,17 +1,40 @@
 @grey: #CCC;
 
+
+//Index
 #index-content {
 	.btn {
 		margin-bottom: 15px;
 	}
 }
 
+//Tweeter
 #tweeter-view-content {
 	.tweet {
-		padding-right: 10%;
-		&:first-child {
+		&:nth-child(1) {
 			border-top: 1px solid @grey;
 		}
+		padding-right: 10%;
 		border-bottom: 1px solid @grey;
+	}
+}
+
+//Tweet
+#tweet-index-content {
+	#tweets {
+		.tweet {
+			&:nth-child(1) {
+				border-top: 1px solid @grey;
+			}
+			border-bottom: 1px solid @grey;
+			a {
+				text-decoration: none;
+			}
+			.re {
+				form {
+					margin-bottom: 5px;
+				}	
+			}
+		}	
 	}
 }

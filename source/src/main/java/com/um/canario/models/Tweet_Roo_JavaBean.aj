@@ -42,4 +42,12 @@ privileged aspect Tweet_Roo_JavaBean {
         this.tweeter = tweeter;
     }
     
+    public Tweet Tweet.getReTweet() {
+        return this.reTweet;
+    }
+    
+    public void Tweet.setReTweet(Tweet reTweet) {
+        this.reTweet = reTweet;
+    }
+    
 }

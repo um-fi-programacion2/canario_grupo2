@@ -1,11 +1,13 @@
 package com.um.canario.models;
 
-import com.um.canario.models.Tweeter;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.Query;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.EntityManager;
 import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -31,4 +33,15 @@ public class Tweet {
     @ManyToOne
     private Tweeter tweeter;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private com.um.canario.models.Tweet reTweet;
+
+    public static List<com.um.canario.models.Tweet> findTweetsFromTweeters(List<com.um.canario.models.Tweeter> tweeters) {
+        List<Tweet> tweets;
+        Query q;
+        q = entityManager().createQuery("SELECT o FROM Tweet o WHERE tweeter in (?1) ORDER BY date DESC", Tweet.class);
+        q.setParameter(1, tweeters);
+        tweets = q.getResultList();
+        return tweets;
+    }
 }

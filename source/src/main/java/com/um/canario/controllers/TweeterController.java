@@ -29,25 +29,45 @@ public class TweeterController {
     public String follow(Model uiModel, HttpServletRequest request) {
 
         Following following = new Following();
-        Tweeter followed = Tweeter.findTweeter(new Long(request.getParameter("view")));
+        Following fFromDb;
+        Tweeter followed;
         Tweeter follower;
+        boolean isFollowing;
+
+        followed = Tweeter.findTweeter(new Long(request.getParameter("view")));
         try {
             follower = getTweeter();
         } catch (ThisIsNotTheUserYouAreLookingForException e) {
             return "redirect:tweet/index";
         }
-
-        following.setFollower(follower);
-        following.setFollowed(followed);
-        following.persist();
+        fFromDb = Following.findFollowingByFollowedAndFollower(followed, follower);
+        isFollowing = fFromDb != null;
+        if (isFollowing) {
+            fFromDb.remove();
+            isFollowing = false;
+        }
+        else {
+            following.setFollower(follower);
+            following.setFollowed(followed);
+            following.persist();
+            isFollowing = true;
+        }
         uiModel.addAttribute("tweeter", followed);
+        uiModel.addAttribute("following", isFollowing);
         return "tweeter/view";
     }
 
     @RequestMapping(params="view", produces="text/html")
     public String view(Model uiModel, HttpServletRequest request) {
         Tweeter tweeter = Tweeter.findTweeter(new Long(request.getParameter("view")));
+        Tweeter user;
+        try {
+            user = getTweeter();
+        } catch(ThisIsNotTheUserYouAreLookingForException e) {
+            return "redirect:tweeter/view";
+        }
         uiModel.addAttribute("tweeter", tweeter);
+        uiModel.addAttribute("following", Following.isFollowing(tweeter, user));
         return "tweeter/view";
     }
 

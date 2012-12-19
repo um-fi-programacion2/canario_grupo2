@@ -5,6 +5,18 @@
   padding-right: 10%;
   border-bottom: 1px solid #cccccc;
 }
-#tweeter-view-content .tweet:first-child {
+#tweeter-view-content .tweet:nth-child(1) {
   border-top: 1px solid #cccccc;
+}
+#tweet-index-content #tweets .tweet {
+  border-bottom: 1px solid #cccccc;
+}
+#tweet-index-content #tweets .tweet:nth-child(1) {
+  border-top: 1px solid #cccccc;
+}
+#tweet-index-content #tweets .tweet a {
+  text-decoration: none;
+}
+#tweet-index-content #tweets .tweet .re form {
+  margin-bottom: 5px;
 }
