@@ -54,4 +54,8 @@ public class Tweet {
         tweets = q.getResultList();
         return tweets;
     }
+
+    public static List<Tweet> findLastTweets() {
+        return entityManager().createQuery("SELECT o FROM Tweet o ORDER BY date DESC", Tweet.class).setMaxResults(10).getResultList();
+    }
 }

@@ -94,3 +94,6 @@ field reference --fieldName tweeter --type ~.models.Tweeter
 field reference --fieldName tweet --type ~.models.Tweet
 field set --fieldName mentions --type ~.models.Mention --cardinality ONE_TO_MANY --mappedBy tweet --class ~.models.Tweet
 field set --fieldName mentions --type ~.models.Mention --cardinality ONE_TO_MANY --mappedBy tweeter --class ~.models.Tweeter
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-20 10:10:20
+help web mvc json
+web mvc controller --class ~.controllers.TweetApiController --preferredMapping /api/tweet
