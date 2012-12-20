@@ -68,6 +68,7 @@ public class TweeterController {
         }
         uiModel.addAttribute("tweeter", tweeter);
         uiModel.addAttribute("following", Following.isFollowing(tweeter, user));
+        uiModel.addAttribute("isMe", tweeter.getId() == user.getId());
         return "tweeter/view";
     }
 

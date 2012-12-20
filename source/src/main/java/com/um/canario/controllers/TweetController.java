@@ -113,6 +113,8 @@ public class TweetController {
         } catch (ThisIsNotTheUserYouAreLookingForException e) {
             bindingResult.rejectValue("content", "user_invalid", "Todos los usuarios mencionados deben existir");
             uiModel.addAttribute("tweet", tweet);
+            tweet.remove();
+            tweet.flush();
             return "tweet/new";
         }
         HashUtils.parseHashes(tweet);

@@ -21,7 +21,7 @@
           </div>
         </c:if>
         <c:if test="${pageContext['request'].userPrincipal != null}">
-          <a href="#" class='btn btn-info'>Ir a un lugar</a>
+          <a href="/tweet/index" class='btn btn-info'>Ir a Casa</a>
         </c:if>
   		</div>
   	</div>

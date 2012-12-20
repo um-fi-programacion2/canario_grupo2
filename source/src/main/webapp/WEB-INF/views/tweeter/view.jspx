@@ -3,7 +3,7 @@
   <jsp:directive.page contentType="text/html;charset=UTF-8"/>
   <jsp:output omit-xml-declaration="yes"/>
   <div class="row-fluid">
-    <div class='span6'>
+    <div class='span4'>
   		<h3>Usuario</h3>
       <dl class="dl-horizontal">
         <dt>Nombre de Usuario</dt>
@@ -28,13 +28,24 @@
         </dd>
       </dl>
       <form method='POST'>
-        <input type="hidden" name="follow" value="1" />
-        <button class='btn btn-info' type="submit">
-          ${following ? "Dejar de Seguir" : "Seguir"}
-        </button>
+        <c:if test="${not isMe}">
+          <input type="hidden" name="follow" value="1" />
+          <button class='btn btn-info' type="submit">
+            ${following ? "Dejar de Seguir" : "Seguir"}
+          </button>
+        </c:if>
       </form>
+      <h3>Está Siguiendo</h3>
+      <c:forEach var="f" items="${tweeter.getFollowing()}">
+        <a href="/tweeter?view=${f.getFollowed().getId()}">
+          <h4>
+            ${f.getFollowed().getName()} ${f.getFollowed().getLname()}
+            <small>@${f.getFollowed().getUsername()}</small>
+          </h4>
+        </a>
+      </c:forEach>
     </div>
-    <div class="span6">
+    <div class="span8">
       <h3>Tweets</h3>
       <c:forEach var="tweet" items="${tweeter.getTweets()}">
         <div class="tweet">

@@ -5,8 +5,18 @@
     <div class="navbar-inner">
       <a class="brand" href="/">Canario</a>
       <ul class="nav">
-        <li><a href="/tweet/index">Home</a></li>
+        <li><a href="/tweet/index">Inicio</a></li>
       </ul>
+      <c:if test="${pageContext['request'].userPrincipal != null}">
+        <spring:url value="/resources/j_spring_security_logout" var="logout"/>
+        <ul class="nav pull-right">
+          <li>
+            <a href="${logout}">
+              Logout
+            </a>
+          </li>
+        </ul>
+      </c:if>
     </div>
   </div>
 </div> 
