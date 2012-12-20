@@ -88,3 +88,9 @@ field reference --fieldName tweet --type ~.models.Tweet --notNull
 field set --fieldName tweets --type ~.models.HashMention --mappedBy hash --cardinality ONE_TO_MANY 
 field set --fieldName tweets --type ~.models.HashMention --mappedBy hash --cardinality ONE_TO_MANY --class ~.models.Hash
 field set --fieldName hashes --type ~.models.HashMention --mappedBy hash --cardinality ONE_TO_MANY --class ~.models.Tweet
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-20 00:32:37
+entity jpa --class ~.models.Mention --testAutomatically 
+field reference --fieldName tweeter --type ~.models.Tweeter
+field reference --fieldName tweet --type ~.models.Tweet
+field set --fieldName mentions --type ~.models.Mention --cardinality ONE_TO_MANY --mappedBy tweet --class ~.models.Tweet
+field set --fieldName mentions --type ~.models.Mention --cardinality ONE_TO_MANY --mappedBy tweeter --class ~.models.Tweeter

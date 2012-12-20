@@ -2,16 +2,16 @@ package com.um.canario.models;
 
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EntityManager;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.FetchType;
-import javax.persistence.EntityManager;
 import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -59,7 +59,7 @@ public class Tweeter {
     @NotNull
     private String authority;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="tweeter")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "tweeter")
     private Set<Tweet> tweets = new HashSet<Tweet>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "followed")
@@ -68,9 +68,12 @@ public class Tweeter {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "follower")
     private Set<Following> following = new HashSet<Following>();
 
-    public static Tweeter findTweeterByUsername(String username) {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tweeter")
+    private Set<Mention> mentions = new HashSet<Mention>();
+
+    public static com.um.canario.models.Tweeter findTweeterByUsername(String username) {
         List<Tweeter> list = entityManager().createQuery("SELECT o FROM Tweeter o WHERE username=?", Tweeter.class).setParameter(1, username).getResultList();
-        if(list.isEmpty()) {
+        if (list.isEmpty()) {
             return null;
         }
         return list.get(0);

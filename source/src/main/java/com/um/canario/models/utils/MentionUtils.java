@@ -1,35 +1,37 @@
 package com.um.canario.models.utils;
 
+import com.um.canario.exceptions.ThisIsNotTheUserYouAreLookingForException;
 import java.lang.System;
 import java.util.List;
 import java.lang.Long;
 import java.util.ArrayList;
 import com.um.canario.models.Tweet;
-import com.um.canario.models.Hash;
-import com.um.canario.models.HashMention;
+import com.um.canario.models.Tweeter;
+import com.um.canario.models.Mention;
 
-public class HashUtils {
+public class MentionUtils {
 
-	public static void parseHashes(Tweet tweet) {
+	public static void parseMentions(Tweet tweet) throws ThisIsNotTheUserYouAreLookingForException {
 		String auxContent = "";
 		String aux;
 		int index, i = 0;
-		ArrayList<Hash> hashes = new ArrayList<Hash>();
+		ArrayList<Tweeter> mentions = new ArrayList<Tweeter>();
 		String finalContent = new String();
 		boolean loop = true, atBegining = false;
-		HashMention hMention;
+		Mention mention;
+		Tweeter tweeter;
 
 		auxContent = tweet.getContent();
 		while(loop) {
 			if(i == 0) {
-				index = auxContent.indexOf("#");
+				index = auxContent.indexOf("@");
 				if(index != 0) {
-					index = auxContent.indexOf(" #");
+					index = auxContent.indexOf(" @");
 				} else {
 					atBegining = true;
 				}
 			} else {
-				index = auxContent.indexOf(" #");
+				index = auxContent.indexOf(" @");
 			}
 			System.out.println("primero: " + index);
 			if (index < 0) {
@@ -68,15 +70,20 @@ public class HashUtils {
 				}
 			}
 			System.out.println("left2: " + auxContent);
-			hashes.add(Hash.findHash(aux, true));
-			finalContent += ("<a href='/tweet?hash=" + aux + "'>#" + aux + "</a>");
+			tweeter = Tweeter.findTweeterByUsername(aux);
+			if(tweeter == null) {
+				throw new ThisIsNotTheUserYouAreLookingForException();
+			}
+			//Agregar errores si no existe
+			mentions.add(tweeter);
+			finalContent += ("<a href='/tweeter?view=" + tweeter.getId() + "'>@" + aux + "</a>");
 			i++;
 		}
-		for(Hash hash : hashes) {
-			hMention = new HashMention();
-			hMention.setTweet(tweet);
-			hMention.setHash(hash);
-			hMention.persist();
+		for(Tweeter t : mentions) {
+			mention = new Mention();
+			mention.setTweet(tweet);
+			mention.setTweeter(t);
+			mention.persist();
 		}
 		System.out.println(finalContent);
 		tweet.setContent(finalContent);

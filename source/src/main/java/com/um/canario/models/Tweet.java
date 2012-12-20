@@ -43,6 +43,9 @@ public class Tweet {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tweet")
     private Set<HashMention> hashes = new HashSet<HashMention>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tweet")
+    private Set<Mention> mentions = new HashSet<Mention>();
+
     public static List<com.um.canario.models.Tweet> findTweetsFromTweeters(List<com.um.canario.models.Tweeter> tweeters) {
         List<Tweet> tweets;
         Query q;

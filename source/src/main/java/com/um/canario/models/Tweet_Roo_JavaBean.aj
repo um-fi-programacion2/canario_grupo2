@@ -5,6 +5,7 @@ package com.um.canario.models;
 
 import com.um.canario.models.HashMention;
 import com.um.canario.models.Location;
+import com.um.canario.models.Mention;
 import com.um.canario.models.Tweet;
 import com.um.canario.models.Tweeter;
 import java.util.Date;
@@ -58,6 +59,14 @@ privileged aspect Tweet_Roo_JavaBean {
     
     public void Tweet.setHashes(Set<HashMention> hashes) {
         this.hashes = hashes;
+    }
+    
+    public Set<Mention> Tweet.getMentions() {
+        return this.mentions;
+    }
+    
+    public void Tweet.setMentions(Set<Mention> mentions) {
+        this.mentions = mentions;
     }
     
 }

@@ -14,6 +14,7 @@ import com.um.canario.models.Hash;
 import com.um.canario.models.HashMention;
 import com.um.canario.validators.TweetValidator;
 import com.um.canario.models.utils.HashUtils;
+import com.um.canario.models.utils.MentionUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -107,12 +108,19 @@ public class TweetController {
         tweet.setDate(new java.util.Date());
         tweet.persist();
         tweet.flush();
+        try {
+            MentionUtils.parseMentions(tweet);
+        } catch (ThisIsNotTheUserYouAreLookingForException e) {
+            bindingResult.rejectValue("content", "user_invalid", "Todos los usuarios mencionados deben existir");
+            uiModel.addAttribute("tweet", tweet);
+            return "tweet/new";
+        }
         HashUtils.parseHashes(tweet);
+
 
         tweet.persist();
         uiModel.asMap().clear();
-        //return "redirect:tweet/new";
-    	return "redirect:tweet/index";
+    	return "redirect:/tweet/index";
     }
 
     @RequestMapping(value="/new", produces="text/html")

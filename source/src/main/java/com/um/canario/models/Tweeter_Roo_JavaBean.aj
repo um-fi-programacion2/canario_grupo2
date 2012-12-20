@@ -4,6 +4,7 @@
 package com.um.canario.models;
 
 import com.um.canario.models.Following;
+import com.um.canario.models.Mention;
 import com.um.canario.models.Tweet;
 import com.um.canario.models.Tweeter;
 import java.util.Date;
@@ -113,6 +114,14 @@ privileged aspect Tweeter_Roo_JavaBean {
     
     public void Tweeter.setFollowing(Set<Following> following) {
         this.following = following;
+    }
+    
+    public Set<Mention> Tweeter.getMentions() {
+        return this.mentions;
+    }
+    
+    public void Tweeter.setMentions(Set<Mention> mentions) {
+        this.mentions = mentions;
     }
     
 }
