@@ -86,7 +86,9 @@ public class TweetController {
         tweeters.add(user);
 
         tweets = Tweet.findTweetsFromTweeters(tweeters);
+        tweeters = Tweeter.findOtherTweeters(user, 1);
         uiModel.addAttribute("tweets", tweets);
+        uiModel.addAttribute("tweeters", tweeters);
         return "tweet/index";
     }
 

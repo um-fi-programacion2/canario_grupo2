@@ -78,4 +78,8 @@ public class Tweeter {
         }
         return list.get(0);
     }
+
+    public static List<Tweeter> findOtherTweeters(Tweeter user, int limit) {
+        return entityManager().createQuery("SELECT o FROM Tweeter o WHERE id != ?", Tweeter.class).setParameter(1, user.getId()).setMaxResults(limit).getResultList();
+    }
 }

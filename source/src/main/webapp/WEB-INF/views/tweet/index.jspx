@@ -7,6 +7,11 @@
   	<div class="span3">
   		<h3>Menu</h3>
   		<a href="/tweet/new" class='btn btn-success'>Tweetear</a>
+      <h3>Otros Tweeters</h3>
+      <c:forEach var="tweeter" items="${tweeters}">
+        <a href="/tweeter?view=${tweeter.getId()}">
+          <h4>${tweeter.getName()} ${tweeter.getLname()} <small>@${tweeter.getUsername()}</small></h4>
+        </a>      </c:forEach>
   	</div>
   	<div class="span9">
   		<h3>Tweets</h3>
