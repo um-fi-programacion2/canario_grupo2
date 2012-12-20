@@ -1,6 +1,5 @@
 package com.um.canario.models.utils;
 
-import java.lang.System;
 import java.util.List;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -31,7 +30,6 @@ public class HashUtils {
 			} else {
 				index = auxContent.indexOf(" #");
 			}
-			System.out.println("primero: " + index);
 			if (index < 0) {
 				loop=false;
 				if(i == 0) {
@@ -45,9 +43,7 @@ public class HashUtils {
 				finalContent += auxContent.substring(0, index + 1);
 			}
 			auxContent = auxContent.substring(index + 1);
-			System.out.println("left1: " + auxContent);
 			index = auxContent.indexOf(" ");
-			System.out.println("segundo: " + index);
 			if(index < 0) {
 				if(atBegining) {
 					aux = auxContent;
@@ -67,7 +63,6 @@ public class HashUtils {
 					auxContent = auxContent.substring(index);
 				}
 			}
-			System.out.println("left2: " + auxContent);
 			hashes.add(Hash.findHash(aux, true));
 			finalContent += ("<a href='/tweet?hash=" + aux + "'>#" + aux + "</a>");
 			i++;
@@ -78,7 +73,6 @@ public class HashUtils {
 			hMention.setHash(hash);
 			hMention.persist();
 		}
-		System.out.println(finalContent);
 		tweet.setContent(finalContent);
 	}
 

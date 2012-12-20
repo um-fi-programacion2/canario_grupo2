@@ -1,7 +1,6 @@
 package com.um.canario.models.utils;
 
 import com.um.canario.exceptions.ThisIsNotTheUserYouAreLookingForException;
-import java.lang.System;
 import java.util.List;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -33,7 +32,6 @@ public class MentionUtils {
 			} else {
 				index = auxContent.indexOf(" @");
 			}
-			System.out.println("primero: " + index);
 			if (index < 0) {
 				loop=false;
 				if(i == 0) {
@@ -47,9 +45,7 @@ public class MentionUtils {
 				finalContent += auxContent.substring(0, index + 1);
 			}
 			auxContent = auxContent.substring(index + 1);
-			System.out.println("left1: " + auxContent);
 			index = auxContent.indexOf(" ");
-			System.out.println("segundo: " + index);
 			if(index < 0) {
 				if(atBegining) {
 					aux = auxContent;
@@ -69,7 +65,6 @@ public class MentionUtils {
 					auxContent = auxContent.substring(index);
 				}
 			}
-			System.out.println("left2: " + auxContent);
 			tweeter = Tweeter.findTweeterByUsername(aux);
 			if(tweeter == null) {
 				throw new ThisIsNotTheUserYouAreLookingForException();
@@ -85,7 +80,6 @@ public class MentionUtils {
 			mention.setTweeter(t);
 			mention.persist();
 		}
-		System.out.println(finalContent);
 		tweet.setContent(finalContent);
 	}
 
